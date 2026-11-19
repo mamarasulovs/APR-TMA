@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the accompanying manuscript."
+title: "APR-TMA: Acquisition Pipeline Randomization with Trace-Modulated Attention"
+type: software
+authors:
+  - family-names: Mamarasulov
+    given-names: Sardor
+  - family-names: Khan
+    given-names: Asif
+  - family-names: Jiang
+    given-names: Haoyu
+  - family-names: Khodjamov
+    given-names: Narzullo
+  - family-names: Ruziev
+    given-names: Oybek
+  - family-names: Turakhonov
+    given-names: Fozil
+preferred-citation:
+  type: article
+  title: "Image-Formation Asymmetry: Acquisition Pipeline Randomization with Trace-Modulated Attention for Domain-Generalizable Face Anti-Spoofing"
+  authors:
+    - family-names: Mamarasulov
+      given-names: Sardor
+    - family-names: Khan
+      given-names: Asif
+    - family-names: Jiang
+      given-names: Haoyu
+    - family-names: Khodjamov
+      given-names: Narzullo
+    - family-names: Ruziev
+      given-names: Oybek
+    - family-names: Turakhonov
+      given-names: Fozil
+  year: 2026
+  notes: "Submitted manuscript; update with journal, volume and DOI once published."

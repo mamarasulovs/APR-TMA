@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+runs/
+cache/
+data/
+external/
+*.pt
+*.pth
+demo.png
