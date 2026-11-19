@@ -1,0 +1,112 @@
+# Experiment suites. Each suite expands to jobs = targets x methods/variants x seeds.
+# Launch with:  python scripts/run_suite.py <suite> --manifest data/manifest.csv
+# Seeds are the fixed set of the manuscript; all hyperparameters live in train.py defaults.
+seeds: [3407, 4519, 5633, 6749, 7861]
+
+suites:
+  # Table 3: ResNet-18 host, OCIM
+  ocim_resnet18:
+    table: tab3
+    protocol: OCIM
+    backbone: resnet18
+    entries:
+      - {method: baseline}
+      - {method: ti_aug}
+      - {method: fas_aug_proxy}
+      - {method: apr_tma, variant: full}
+
+  # Table 4 and Table 12 (statistics): ViT-ConvPass host, OCIM
+  ocim_vit:
+    table: tab4
+    protocol: OCIM
+    backbone: vit_convpass
+    entries:
+      - {method: baseline}
+      - {method: ti_aug}
+      - {method: fas_aug_proxy}
+      - {method: apr_tma, variant: full}
+
+  # Table 5: vision-language host, APR-TMA inserted as a plug-in (image-only CLIP host here)
+  ocim_clip_plugin:
+    table: tab5
+    protocol: OCIM
+    backbone: clip_vit
+    entries:
+      - {method: baseline}
+      - {method: apr_tma, variant: full}
+
+  # Table 6: component and leakage-control ablation (ViT-ConvPass, OCIM)
+  ablation:
+    table: tab6
+    protocol: OCIM
+    backbone: vit_convpass
+    entries:
+      - {method: apr_tma, variant: no_internal_isp}
+      - {method: apr_tma, variant: symmetric_composition}
+      - {method: apr_tma, variant: fixed_pipeline}
+      - {method: apr_tma, variant: uniform_modulation}
+      - {method: apr_tma, variant: class_dependent_magnitude}
+      - {method: apr_tma, variant: no_sare}
+      - {method: apr_tma, variant: gradcam_modulation}
+      - {method: apr_tma, variant: drop_tone_wb_gamma}
+      - {method: apr_tma, variant: drop_noise}
+      - {method: apr_tma, variant: drop_demosaic_randomization}
+      - {method: apr_tma, variant: stdn_trace_modulation}
+      - {method: apr_tma, variant: drop_sharpening}
+      - {method: apr_tma, variant: full}
+
+  # Table 7: MICY
+  micy:
+    table: tab7
+    protocol: MICY
+    backbone: vit_convpass
+    entries:
+      - {method: fas_aug_proxy}
+      - {method: apr_tma, variant: full}
+
+  # Table 8: limited-source (M & I)
+  limited:
+    table: tab8
+    protocol: LIMITED
+    backbone: vit_convpass
+    entries:
+      - {method: fas_aug_proxy}
+      - {method: apr_tma, variant: full}
+
+  # Table 9: modern-dataset transfer (descriptive)
+  modern:
+    table: tab9
+    protocol: MODERN
+    backbone: vit_convpass
+    entries:
+      - {method: apr_tma, variant: full}
+
+  wmca_unseen:
+    table: tab9
+    protocol: WMCA_UNSEEN
+    backbone: vit_convpass
+    entries:
+      - {method: apr_tma, variant: full}
+
+  # Table 10: OULU-NPU device protocols (six leave-one-camera-out folds each)
+  oulu_p3:
+    table: tab10
+    protocol: OULU_P3
+    backbone: vit_convpass
+    entries:
+      - {method: fas_aug_proxy}
+      - {method: apr_tma, variant: full}
+
+  oulu_p4:
+    table: tab10
+    protocol: OULU_P4
+    backbone: vit_convpass
+    entries:
+      - {method: fas_aug_proxy}
+      - {method: apr_tma, variant: full}
+
+# Which trace cache each variant needs, relative to --trace-root.
+trace_sources:
+  bisenet: bisenet
+  gradcam: gradcam
+  stdn: stdn
